@@ -25,7 +25,9 @@ def generate_password():
     if length < 1:
        length = 1
     if length > 30:
-       length = 30
+      label_result.config(text="Error! Maximum password length is 30.")
+      return
+
     chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
     password = ""
 
@@ -38,6 +40,12 @@ def generate_password():
 label_result = tk.Label(root,text="")
 label_result.pack()
 
+
+
+button = tk.Button(root, text="Generate" ,command=generate_password)
+button.pack(expand=True)
+
+
 def copy_password():
     if last_password == "":
         label_result.config(text="Generate password first!")
@@ -46,9 +54,7 @@ def copy_password():
     root.clipboard_append(last_password)
 
 copy_button = tk.Button(root, text="Copy", command=copy_password)
-copy_button.pack()
+copy_button.pack(expand=True)
 
-button = tk.Button(root, text="Generate" ,command=generate_password)
-button.pack(expand=True)
 
 root.mainloop()
